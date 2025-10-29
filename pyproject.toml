@@ -1,0 +1,15 @@
+[project]
+name = "trip-planner-agent"
+version = "0.1.0"
+description = "trip planner multi-agent system using langchain ecosystem"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "langgraph",
+    "langchain-groq",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.1.0",
+]
