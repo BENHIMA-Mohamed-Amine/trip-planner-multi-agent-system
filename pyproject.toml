@@ -5,8 +5,14 @@ description = "trip planner multi-agent system using langchain ecosystem"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "pydantic>=2.8,<2.10",
+    "python-dotenv",
     "langgraph",
-    "langchain-groq",
+    "langchain[groq]",
+    "amadeus",
+    "langchain-community",
+    "langchain-google-community[calendar]",
+    "langgraph-supervisor",
 ]
 
 [dependency-groups]
