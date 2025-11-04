@@ -12,3 +12,4 @@ wheels/
 # environment variables and secrets
 .env
 credentials.json
+token.json
