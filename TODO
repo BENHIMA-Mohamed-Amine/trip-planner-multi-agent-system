@@ -1,0 +1,13 @@
+
+Todo:
+  ☐ Add UI for chatbot interaction.
+  ☐ use whenver poossbile async/await
+  ☐ deploy to cloud (Azure)
+  ☐ implement monotiring and logging
+  ☐ add agent evaluation
+  ☐ integrate CI/CD pipeline
+  ☐ Add error handling and retries.
+  ☐ add human in the loop, pause, resume, stop, retry, and edit response
+  ☐ add user CRUD, and authentication
+  ☐ store conversation history in a database.
+  ☐ use caching
