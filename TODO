@@ -1,6 +1,5 @@
 
 Todo:
-  ☐ Add UI for chatbot interaction.
   ☐ use whenver poossbile async/await
   ☐ deploy to cloud (Azure)
   ☐ implement monotiring and logging
@@ -8,6 +7,7 @@ Todo:
   ☐ integrate CI/CD pipeline
   ☐ Add error handling and retries.
   ☐ add human in the loop, pause, resume, stop, retry, and edit response
+  ☐ use caching
+  ☐ Add UI for chatbot interaction.
   ☐ add user CRUD, and authentication
   ☐ store conversation history in a database.
-  ☐ use caching

@@ -19,29 +19,17 @@ def create_flight_tools():
     AmadeusFlightSearch.model_rebuild(_types_namespace=namespace)
 
     # Create the client
-    client = Client(client_id=AMADEUS_CLIENT_ID, client_secret=AMADEUS_CLIENT_SECRET, hostname="test")
+    client = Client(
+        client_id=AMADEUS_CLIENT_ID,
+        client_secret=AMADEUS_CLIENT_SECRET,
+        hostname="test",
+    )
 
     # Create toolkit
     toolkit = AmadeusToolkit(llm=model, client=client)
     tools = toolkit.get_tools()
 
-    # for tool in tools:
-    #     print(f"\nTool Name: {tool.name}")
-    #     print(f"Description: {tool.description}")
-    #     print(f"Arguments Schema: {tool.args}")
-    #     # You can also access:
-    #     # print(f"Args Schema Type: {tool.args_schema}")
-    #     print("-" * 50)
-
-    # response = client.shopping.flight_offers_search.get(
-    #     originLocationCode="NYC",
-    #     destinationLocationCode="LAX",
-    #     departureDate="2025-12-01",
-    #     adults=1,
-    # )
-
-    # print(f"Found {len(response.data)} flight offers")
-
     return tools
+
 
 flight_tools = create_flight_tools()

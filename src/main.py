@@ -17,8 +17,15 @@ async def main():
         print("Agent:", end=" ", flush=True)
         async for chunk in stream_response(graph, user_input, config):
             for node_name in chunk.keys():
-                message = chunk[node_name]['chat_history']
-                print(message.content, end=" ", flush=True)
+                message = chunk[node_name]["chat_history"]
+                # print(message.content, end=" ", flush=True)
+                if isinstance(message, list):
+                    for msg in message:
+                        print(f"called tool: {msg.name}")
+
+                if isinstance(message, AIMessage):
+                    if message.content:
+                        print(message.content, end=" ", flush=True)
         print()
 
 

@@ -11,7 +11,6 @@ from src.tools.flight_tool import flight_tools
 
 
 def should_continue(state: WorkflowState) -> str:
-
     last_message = state.get("chat_history", [])[-1]
     # print("Last message:", last_message)
     if last_message.tool_calls:
@@ -26,6 +25,14 @@ def should_continue(state: WorkflowState) -> str:
         return "end"
 
 
+def intial_routing_condition(state: WorkflowState) -> str:
+    last_node = state.get("last_node", None)
+    if last_node == "calendar_agent":
+        return "calendar_agent"
+    else:
+        return "flight_search_agent"
+
+
 def graph_builder() -> Pregel:
     """Graph builder to construct knowledge graph from user inputs."""
 
@@ -36,14 +43,29 @@ def graph_builder() -> Pregel:
     graph.add_node(calendar_agent)
     graph.add_node(
         ToolNode(
-            tools=calendar_tools, name="calendar_tools", messages_key="chat_history"
+            tools=calendar_tools,
+            name="calendar_tools",
+            messages_key="chat_history",
+            handle_tool_errors=False,
         )
     )
     graph.add_node(
-        ToolNode(tools=flight_tools, name="flight_tools", messages_key="chat_history")
+        ToolNode(
+            tools=flight_tools,
+            name="flight_tools",
+            messages_key="chat_history",
+            handle_tool_errors=False,
+        )
     )
 
-    graph.add_edge(START, "flight_search_agent")
+    graph.add_conditional_edges(
+        START,
+        intial_routing_condition,
+        {
+            "flight_search_agent": "flight_search_agent",
+            "calendar_agent": "calendar_agent",
+        }
+    )
     graph.add_conditional_edges(
         "flight_search_agent",
         should_continue,

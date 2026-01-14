@@ -6,8 +6,8 @@ from src.prompts.calendar_prompt import CALENDAR_AGENT_PROMPT
 
 from langchain.messages import SystemMessage
 
-def calendar_agent(state: WorkflowState):
 
+def calendar_agent(state: WorkflowState):
     system_message = SystemMessage(content=CALENDAR_AGENT_PROMPT)
 
     prompt = state.get("chat_history", []) + [system_message]
@@ -17,4 +17,4 @@ def calendar_agent(state: WorkflowState):
 
     response = calendar_model.invoke(prompt)
 
-    return {"chat_history": response}
+    return {"chat_history": response, "last_node": "calendar_agent"}

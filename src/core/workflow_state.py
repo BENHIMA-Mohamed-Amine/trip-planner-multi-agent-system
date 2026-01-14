@@ -7,3 +7,4 @@ class WorkflowState(TypedDict):
     """The workflow state."""
 
     chat_history: Annotated[List[BaseMessage], add_messages]
+    last_node: str = "flight_search_agent"
